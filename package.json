@@ -1,0 +1,12 @@
+{
+  "name": "node-multi-server-test",
+  "version": "0.1.1",
+  "private": true,
+  "author": {
+  	"name": "David Overcash",
+  	"email": "funnylookinhat@gmail.com"
+  },
+  "dependencies": {
+  	"socket.io": "0.9.x"
+  }
+}

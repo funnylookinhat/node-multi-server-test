@@ -1,0 +1,21 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var sockets = {};
+  for( var i = 0; i < 10; i++ ) {
+  	for( var j = 0; j < 10; j++ ) {
+  	  var port = '400'+i+j;
+  	  sockets[port] = io.connect('http://localhost:'+port);
+  	  sockets[port].port = port;
+  	  sockets[port].on('pong', function (data) {
+  	  	var _this = this;
+  	  	console.log('PORT '+_this.port+' LAG: '+( Date.now() - data.timestamp ));
+  	  });
+  	  sockets[port].on('ready', function (data) {
+  	  	var _this = this;
+  	  	setInterval(function() {
+  	  	  _this.emit('ping',{timestamp: Date.now()});
+  	  	}, 5000);
+  	  });
+  	}
+  }
+</script>
